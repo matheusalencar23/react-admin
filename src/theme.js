@@ -5,7 +5,7 @@ export const tokens = (mode) => ({
   ...(mode === "dark" ? darkColors : lightColors),
 });
 
-export const themeSettings = (mode) => {
+const themeSettings = (mode) => {
   const colors = tokens(mode);
 
   return {
