@@ -1,10 +1,12 @@
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState } from "react";
 import { createTheme } from "@mui/material/styles";
 
+// retorna o objeto de cores dependendo do modo dark ou light
 export const tokens = (mode) => ({
   ...(mode === "dark" ? darkColors : lightColors),
 });
 
+// retorna o objeto que a ser usado na configuração do tema do @mui com base no moda dark ou light
 const themeSettings = (mode) => {
   const colors = tokens(mode);
 
@@ -74,6 +76,26 @@ const themeSettings = (mode) => {
       },
     },
   };
+};
+
+// cria o contexto com a função (ainda vazia) responsável por alterar entre modo dark e light
+export const ColorModeContext = createContext({
+  toggle: () => {},
+});
+
+// cria um hook que retorna dois itens
+// o tema a ser usado no provider do @mui [theme]
+// objeto a ser passado para o provider gerado pelo ColorModeContext [colorMode]
+export const useMode = () => {
+  const [mode, setMode] = useState("dark");
+
+  const colorMode = {
+    toggle: () => setMode((prev) => (prev === "light" ? "dark" : "light")),
+  };
+
+  const theme = createTheme(themeSettings(mode));
+
+  return [theme, colorMode];
 };
 
 const darkColors = {
@@ -193,23 +215,3 @@ const lightColors = {
 };
 
 const fontFamily = ["Source Sans Pro", "sans-serif"].join(",");
-
-export const ColorModeContext = createContext({
-  toggleColorMode: () => {},
-});
-
-export const useMode = () => {
-  const [mode, setMode] = useState("dark");
-
-  const colorMode = useMemo(
-    () => ({
-      toggleColorMode: () =>
-        setMode((prev) => (prev === "light" ? "dark" : "light")),
-    }),
-    []
-  );
-
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-
-  return [theme, colorMode];
-};
