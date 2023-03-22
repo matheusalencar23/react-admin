@@ -7,7 +7,7 @@ import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import Team from "./scenes/team";
 // import Invoices from "./scenes/dashboard";
-// import Contacts from "./scenes/dashboard";
+import Contacts from "./scenes/contacts";
 // import Bar from "./scenes/dashboard";
 // import Form from "./scenes/dashboard";
 // import Line from "./scenes/dashboard";
@@ -32,7 +32,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/team" element={<Team />} />
                 {/* <Route path="/invoices" element={<Invoices />} /> */}
-                {/* <Route path="/contacts" element={<Contacts />} /> */}
+                <Route path="/contacts" element={<Contacts />} />
                 {/* <Route path="/bar" element={<Bar />} /> */}
                 {/* <Route path="/form" element={<Form />} /> */}
                 {/* <Route path="/line" element={<Line />} /> */}
