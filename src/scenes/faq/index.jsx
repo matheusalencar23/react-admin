@@ -37,11 +37,13 @@ const FAQ = () => {
   return (
     <Box m="20px">
       <Header title="FAQ" subtitle="Frequently asked questions page" />
-      <Question title="An important question" defaultExpanded />
-      <Question title="Another important question" />
-      <Question title="Your favorite question" />
-      <Question title="Some random question" />
-      <Question title="The final question" />
+      <Box overflow="auto" height="75vh">
+        <Question title="An important question" defaultExpanded />
+        <Question title="Another important question" />
+        <Question title="Your favorite question" />
+        <Question title="Some random question" />
+        <Question title="The final question" />
+      </Box>
     </Box>
   );
 };
